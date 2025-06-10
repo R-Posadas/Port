@@ -80,7 +80,7 @@ export default function About() {
                     >
                         <Box
                             component="img"
-                            src="../public/img/about.jpg"
+                            src="../public/img/about.JPG"
                             alt=""
                             width={400}
                             height={600}
