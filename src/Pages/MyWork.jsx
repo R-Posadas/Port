@@ -35,21 +35,21 @@ export default function MyWork() {
         sx={{
             width: "100%",
             minHeight: "100vh",
-            backgroundColor: "#2e2e2e", // Dark background
-            color: "white", // White text
+            backgroundColor: "#2e2e2e",
+            color: "white",
         }}
         >
             <Box
             sx={{
-                mt: 10,
+                mt: 5,
                 width: "100%",
                 minHeight: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "#2e2e2e", // Dark background
-                color: "white", // White text
+                backgroundColor: "#2e2e2e",
+                color: "white",
                 padding: "40px 20px",
             }}
             >
@@ -81,62 +81,69 @@ export default function MyWork() {
                 </Box>
 
                 <Container
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: 4,
+                    mt: 5,
+                }}
+                >
+                <Box
                     sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: 4,
-                        mt: 5,
+                    display: "flex",
+                    px: 4,
+                    gap: 5,
+                    justifyContent: "center",
                     }}
                 >
+                    {services.map((service, i) => (
                     <Box
+                        key={i}
                         sx={{
-                            display: "flex",
-                            px: 4,
-                            gap: 5,
+                        width: 350,
+                        height: 450,
+                        backgroundColor: "#1e1e1e",
+                        color: "white",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        px: 3,
+                        boxShadow: "0 0 10px rgb(22, 22, 22)",
+                        borderRadius: "12px",
+                        transition: "all 0.3s ease",
+                        cursor: "pointer",
+                        "&:hover": {
+                            transform: "scale(1.05)",
+                            border: "none",
+                            boxShadow: "0 0 20px rgba(0, 255, 119, 0.5)",
+                        },
                         }}
-                        >
-                        {services.map((service, i) => ( 
-                            <Box
-                            key={i}
-                            sx={{
-                                width: 350,
-                                height: 450,
-                                backgroundColor: "#1e1e1e",
-                                color: "white",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                px: 3,
-                                border: "1px solid #00ff77",
-                                borderRadius: "12px",
-                            }}
-                            >
-                                <Box
-                                    component="img"
-                                    src={service.image}
-                                    alt={service.title}
-                                    sx={{
-                                        width: "100%",
-                                        height: 200,
-                                        objectFit: "contain",
-                                        borderRadius: "8px",
-                                        mb: 2,
-                                        mt: 2,
-                                    }}
-                                />
+                    >
+                        <Box
+                        component="img"
+                        src={service.image}
+                        alt={service.title}
+                        sx={{
+                            width: "100%",
+                            height: 200,
+                            objectFit: "contain",
+                            borderRadius: "8px",
+                            mb: 2,
+                            mt: 2,
+                        }}
+                        />
 
-                                <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-                                    {service.title}
-                                </Typography>
+                        <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                        {service.title}
+                        </Typography>
 
-                                <Typography variant="body2" sx={{ lineHeight: 1.6, textAlign: "center" }}>
-                                    {service.description}
-                                </Typography>
-
-                            </Box>
-                        ))}
+                        <Typography variant="body2" sx={{ lineHeight: 1.6, textAlign: "center" }}>
+                        {service.description}
+                        </Typography>
                     </Box>
+                    ))}
+                </Box>
                 </Container>
             </Box>
         </Box>

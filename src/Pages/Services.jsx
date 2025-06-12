@@ -3,10 +3,13 @@ import {
     Container, 
     Typography,
     Divider,
-    Button,
+    Dialog,
+
 } from "@mui/material";
 import Layout from "./Layout";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Services() {
 
@@ -28,6 +31,27 @@ export default function Services() {
         },
     ];
 
+    const certs = [
+        { image: "/img/1.jpg" },
+        { image: "/img/2.jpg" },
+        { image: "/img/3.jpg" },
+        { image: "/img/4.jpg" },
+        { image: "/img/5.png" },
+    ];
+
+    const [open, setOpen] = useState(false);
+    const [selectedImg, setSelectedImg] = useState(null);
+
+    const handleOpen = (img) => {
+        setSelectedImg(img);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        setSelectedImg(null);
+  };
+
   return (
     <Layout>
         <Box
@@ -41,7 +65,7 @@ export default function Services() {
         >
             <Box
             sx={{
-                mt: 10,
+                mt: 5,
                 width: "100%",
                 minHeight: "100%",
                 display: "flex",
@@ -60,7 +84,7 @@ export default function Services() {
                     }}
                 >
                     <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: "20px", color: "white" }}>
-                        My <span style={{color: "#00ff77"}}>Services</span>
+                        My <span style={{color: "#00ff77"}}>Services & Certificate</span>
                     </Typography>
                     <Typography variant="h6" sx={{ lineHeight: "1.6", fontSize: "18px" }}>
                         I offera unique combination of front-end development and basic video/photo editing services to help you
@@ -90,44 +114,135 @@ export default function Services() {
                         justifyContent: "center",
                         alignItems: "center",
                         padding: 4,
-                        mt: 5,
                     }}
                 >
                     <Box
                         sx={{
-                            display: "flex",
-                            px: 4,
-                            gap: 5,
+                        display: "flex",
+                        px: 4,
+                        gap: 5,
+                        flexWrap: "wrap",
+                        justifyContent: "center",
                         }}
-                        >
-                        {services.map((service, i) => ( 
-                            <Box
+                    >
+                        {services.map((service, i) => (
+                        <Box
                             key={i}
                             sx={{
-                                width: 300,
-                                height: 300,
-                                backgroundColor: "#1e1e1e",
-                                color: "white",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                px: 3,
-                                justifyContent: "center",
-                                border: "1px solid #00ff77",
-                                borderRadius: "12px",
+                            width: 300,
+                            height: 300,
+                            backgroundColor: "#1e1e1e",
+                            color: "white",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            px: 3,
+                            borderRadius: "12px",
+                            transition: "all 0.3s ease",
+                            cursor: "pointer",
+                            "&:hover": {
+                                transform: "scale(1.05)",
+                                border: "none",
+                                boxShadow: "0 0 15px rgba(0, 255, 119, 0.6)",
+                            },
                             }}
-                            >
-                                <Icon icon={service.icon} width={50} height={50} style={{ color: "#00ff77", marginBottom: "16px" }} />
-                                <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-                                    {service.title}
-                                </Typography>
-                                <Typography variant="body2" sx={{ lineHeight: 1.6, textAlign: "center" }}>
-                                    {service.description}
-                                </Typography>
-                            </Box>
+                        >
+                            <Icon
+                            icon={service.icon}
+                            width={50}
+                            height={50}
+                            style={{ color: "#00ff77", marginBottom: "16px" }}
+                            />
+                            <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
+                            {service.title}
+                            </Typography>
+                            <Typography variant="body2" sx={{ lineHeight: 1.6, textAlign: "center" }}>
+                            {service.description}
+                            </Typography>
+                        </Box>
                         ))}
                     </Box>
-                </Container>
+                    </Container>
+                <Box
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "40px 20px",
+                    }}
+                >
+                    <Box
+                        sx={{
+                        overflow: "hidden",
+                        width: "100%",
+                        position: "relative",
+                        }}
+                    >
+                        <motion.div
+                            style={{
+                                display: "flex",
+                                whiteSpace: "nowrap",
+                            }}
+                            animate={{ x: ["0%", "-100%"] }}
+                            transition={{
+                                repeat: Infinity,
+                                duration: 60,
+                                ease: "linear",
+                            }}
+                        >
+                        
+                            {[...certs, ...certs].map((cert, i) => (
+                                <Box
+                                key={i}
+                                sx={{
+                                    flex: "0 0 auto",
+                                    width: 300,
+                                    height: 220,
+                                    mx: 2,
+                                    backgroundColor: "#1e1e1e",
+                                    borderRadius: "12px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    cursor: "pointer",
+                                    transition: "transform 0.3s ease",
+                                    "&:hover": {
+                                    transform: "scale(1.05)",
+                                    },
+                                }}
+                                onClick={() => handleOpen(cert.image)}
+                                >
+                                <Box
+                                    component="img"
+                                    src={cert.image}
+                                    alt="certificate"
+                                    sx={{
+                                    width: "90%",
+                                    height: "90%",
+                                    objectFit: "contain",
+                                    }}
+                                />
+                                </Box>
+                            ))}
+                        </motion.div>
+                    </Box>
+                </Box>
+                {/* Fullscreen Dialog */}
+                <Dialog open={open} onClose={handleClose} maxWidth="lg">
+                    <Box
+                        component="img"
+                        src={selectedImg}
+                        alt="full certificate"
+                        sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        backgroundColor: "black",
+                        }}
+                    />
+                </Dialog>
             </Box>
         </Box>
     </Layout>

@@ -22,7 +22,7 @@ export default function About() {
         >
             <Box
             sx={{
-                mt: 10,
+                mt: 5,
                 width: "100%",
                 minHeight: "100%",
                 display: "flex",

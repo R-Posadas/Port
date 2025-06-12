@@ -15,7 +15,7 @@ export default function Skills() {
   return (
     <Layout>
         <Box
-        id="myWork"
+        id="contact"
         sx={{
             width: "100%",
             minHeight: "100vh",
@@ -25,7 +25,7 @@ export default function Skills() {
         >
             <Box
             sx={{
-                mt: 10,
+                mt: 5,
                 width: "100%",
                 minHeight: "100%",
                 display: "flex",

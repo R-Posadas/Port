@@ -86,23 +86,30 @@ export default function Home({ user }) {
                             transition: { duration: 0.4 },
                         }}
                         >
-                        <Button
-                            sx={{
-                            border: "1px solid #00ff77",
-                            backgroundColor: "transparent",
-                            color: "white",
-                            padding: "12px 40px",
-                            minWidth: "200px",
-                            fontSize: "16px",
-                            textTransform: "none",
-                            "&:hover": {
-                                backgroundColor: "#00ff77",
-                                color: "black",
-                            },
-                            }}
-                        >
-                            {text}
-                        </Button>
+                            <Button
+                                  onClick={() => {
+                                        const targetId = text === "My Work" ? "myWork" : "contact";
+                                        const element = document.getElementById(targetId);
+                                        if (element) {
+                                        element.scrollIntoView({ behavior: "smooth" });
+                                        }
+                                    }}
+                                sx={{
+                                border: "1px solid #00ff77",
+                                backgroundColor: "transparent",
+                                color: "white",
+                                padding: "12px 40px",
+                                minWidth: "200px",
+                                fontSize: "16px",
+                                textTransform: "none",
+                                "&:hover": {
+                                    backgroundColor: "#00ff77",
+                                    color: "black",
+                                },
+                                }}
+                            >
+                                {text}
+                            </Button>
                         </motion.div>
                     ))}
                     </Box>
