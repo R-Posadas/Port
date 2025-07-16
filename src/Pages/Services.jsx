@@ -84,7 +84,7 @@ export default function Services() {
                     }}
                 >
                     <Typography variant="h3" sx={{ fontWeight: "bold", marginBottom: "20px", color: "white" }}>
-                        My <span style={{color: "#00ff77"}}>Services & Certificate</span>
+                        My <span style={{color: "#00ff77"}}>Services</span>
                     </Typography>
                     <Typography variant="h6" sx={{ lineHeight: "1.6", fontSize: "18px" }}>
                         I offera unique combination of front-end development and basic video/photo editing services to help you
@@ -164,71 +164,6 @@ export default function Services() {
                         ))}
                     </Box>
                     </Container>
-                <Box
-                    sx={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "40px 20px",
-                    }}
-                >
-                    <Box
-                        sx={{
-                        overflow: "hidden",
-                        width: "100%",
-                        position: "relative",
-                        }}
-                    >
-                        <motion.div
-                            style={{
-                                display: "flex",
-                                whiteSpace: "nowrap",
-                            }}
-                            animate={{ x: ["0%", "-100%"] }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 60,
-                                ease: "linear",
-                            }}
-                        >
-                        
-                            {[...certs, ...certs].map((cert, i) => (
-                                <Box
-                                key={i}
-                                sx={{
-                                    flex: "0 0 auto",
-                                    width: 300,
-                                    height: 220,
-                                    mx: 2,
-                                    backgroundColor: "#1e1e1e",
-                                    borderRadius: "12px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    cursor: "pointer",
-                                    transition: "transform 0.3s ease",
-                                    "&:hover": {
-                                    transform: "scale(1.05)",
-                                    },
-                                }}
-                                onClick={() => handleOpen(cert.image)}
-                                >
-                                <Box
-                                    component="img"
-                                    src={cert.image}
-                                    alt="certificate"
-                                    sx={{
-                                    width: "90%",
-                                    height: "90%",
-                                    objectFit: "contain",
-                                    }}
-                                />
-                                </Box>
-                            ))}
-                        </motion.div>
-                    </Box>
-                </Box>
                 {/* Fullscreen Dialog */}
                 <Dialog open={open} onClose={handleClose} maxWidth="lg">
                     <Box
