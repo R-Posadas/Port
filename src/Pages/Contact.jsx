@@ -19,8 +19,8 @@ export default function Skills() {
         sx={{
             width: "100%",
             minHeight: "100vh",
-            backgroundColor: "#2e2e2e", // Dark background
-            color: "white", // White text
+            backgroundColor: "#2e2e2e", 
+            color: "white", 
         }}
         >
             <Box
@@ -32,8 +32,8 @@ export default function Skills() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "#2e2e2e", // Dark background
-                color: "white", // White text
+                backgroundColor: "#2e2e2e",
+                color: "white", 
                 padding: "40px 20px",
             }}
             >
@@ -77,7 +77,7 @@ export default function Skills() {
                     sx={{
                         width: "100%",
                         maxWidth: "600px",
-                        backgroundColor: "#1e1e1e", // Slightly lighter background for the form
+                        backgroundColor: "#1e1e1e", 
                         borderRadius: "8px",
                         padding: "40px 20px",
                         boxShadow: 3,

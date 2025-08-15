@@ -20,7 +20,7 @@ export default function Services() {
             description: "I create stunning, user-friendly websites and web apps using HTML5, CSS3, JavaScript, React, and WordPress for seamless, responsive designs and custom components.",
         },
         {
-            title: "Video Editing",
+            title: "Editing",
             icon: "mdi:movie-edit",
             description: "I provide basic video and photo editing services, including trimming, color correction, and simple effects to enhance your content.",
         },
@@ -31,13 +31,6 @@ export default function Services() {
         },
     ];
 
-    const certs = [
-        { image: "/img/1.jpg" },
-        { image: "/img/2.jpg" },
-        { image: "/img/3.jpg" },
-        { image: "/img/4.jpg" },
-        { image: "/img/5.png" },
-    ];
 
     const [open, setOpen] = useState(false);
     const [selectedImg, setSelectedImg] = useState(null);
@@ -59,8 +52,8 @@ export default function Services() {
         sx={{
             width: "100%",
             minHeight: "100vh",
-            backgroundColor: "#2e2e2e", // Dark background
-            color: "white", // White text
+            backgroundColor: "#2e2e2e", 
+            color: "white",
         }}
         >
             <Box
@@ -72,8 +65,8 @@ export default function Services() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                backgroundColor: "#2e2e2e", // Dark background
-                color: "white", // White text
+                backgroundColor: "#2e2e2e", 
+                color: "white", 
                 padding: "40px 20px",
             }}
             >
@@ -164,7 +157,7 @@ export default function Services() {
                         ))}
                     </Box>
                     </Container>
-                {/* Fullscreen Dialog */}
+                
                 <Dialog open={open} onClose={handleClose} maxWidth="lg">
                     <Box
                         component="img"

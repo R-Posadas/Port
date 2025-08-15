@@ -78,7 +78,7 @@ export default function Skills() {
               justifyContent: "center",
               alignItems: "center",
               padding: 4,
-              mt: 5,
+              mt: 3,
             }}
           >
             <Box
@@ -86,7 +86,7 @@ export default function Skills() {
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "center",
-                gap: 15,
+                gap: 10,
                 maxWidth: 1000,
               }}
             >
