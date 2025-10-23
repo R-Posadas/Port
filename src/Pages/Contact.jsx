@@ -4,29 +4,28 @@ import {
   Typography,
   Divider,
   Button,
-  TextField,
-  Checkbox
+  TextField
 } from "@mui/material";
 import Layout from "./Layout";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import ReCAPTCHA from "react-google-recaptcha"; // ✅ new import
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Skills() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-    agree: false,
   });
 
-  const [captchaValue, setCaptchaValue] = useState(null); // ✅ store captcha state
+  const [captchaValue, setCaptchaValue] = useState(null); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     });
   };
 
@@ -37,15 +36,12 @@ export default function Skills() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.agree) {
-      alert("Please agree to the policies first.");
+    if (!captchaValue) {
+      alert("Please complete the CAPTCHA verification before submitting.");
       return;
     }
 
-    if (!captchaValue) {
-      alert("Please complete the CAPTCHA verification.");
-      return;
-    }
+    setIsSubmitting(true);
 
     emailjs
       .send(
@@ -61,12 +57,14 @@ export default function Skills() {
       .then(
         () => {
           alert("Message sent successfully!");
-          setFormData({ name: "", email: "", message: "", agree: false });
+          setFormData({ name: "", email: "", message: "" });
           setCaptchaValue(null);
+          setIsSubmitting(false);
         },
         (error) => {
           console.error("EmailJS error:", error);
           alert("Failed to send message. Please try again.");
+          setIsSubmitting(false);
         }
       );
   };
@@ -100,7 +98,7 @@ export default function Skills() {
             </Typography>
           </Container>
 
-          <Divider sx={{ mt: 4, borderColor: "#00ff77", width: "150vh" }} />
+          <Divider sx={{ mt: 4, borderColor: "#00ff77", width: "150vh", maxWidth: "90vw" }} />
 
           <Container sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
             <Box
@@ -115,8 +113,12 @@ export default function Skills() {
                 boxShadow: 3,
               }}
             >
-              <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2, textAlign: "center" }}>
-                Let’s talk. <br /> <span style={{ color: "#00ff77" }}>Enter your project details.</span>
+              <Typography
+                variant="h4"
+                sx={{ fontWeight: "bold", mb: 2, textAlign: "center" }}
+              >
+                Let’s talk. <br />{" "}
+                <span style={{ color: "#00ff77" }}>Enter your project details.</span>
               </Typography>
 
               <Divider sx={{ borderColor: "#00ff77", mb: 2 }} />
@@ -127,6 +129,7 @@ export default function Skills() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Name"
+                required
                 sx={{ mb: 2, backgroundColor: "white", borderRadius: "4px" }}
               />
 
@@ -136,6 +139,8 @@ export default function Skills() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
+                type="email"
+                required
                 sx={{ mb: 2, backgroundColor: "white", borderRadius: "4px" }}
               />
 
@@ -147,52 +152,52 @@ export default function Skills() {
                 placeholder="Project Description"
                 multiline
                 rows={4}
+                required
                 sx={{ mb: 2, backgroundColor: "white", borderRadius: "4px" }}
               />
 
-              {/* <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Checkbox
-                  name="agree"
-                  checked={formData.agree}
-                  onChange={handleChange}
-                />
-                <Typography variant="body2">
-                  I agree to the <span style={{ color: "#00ff77" }}>Cookie Policy</span> and{" "}
-                  <span style={{ color: "#00ff77" }}>Privacy Policy</span>
-                </Typography>
-              </Box> */}
-
               {/* ✅ Google reCAPTCHA box */}
-            <Box
+              <Box
                 sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    mb: 2,
-                    transform: "scale(1)",
-                    transformOrigin: "center",
-                    "@media (max-width:900px)": {
+                  display: "flex",
+                  justifyContent: "center",
+                  mb: 2,
+                  transform: "scale(1)",
+                  transformOrigin: "center",
+                  "@media (max-width:900px)": {
                     transform: "scale(0.9)",
-                    },
-                    "@media (max-width:600px)": {
+                  },
+                  "@media (max-width:600px)": {
                     transform: "scale(0.8)",
-                    },
-                    "@media (max-width:400px)": {
+                  },
+                  "@media (max-width:400px)": {
                     transform: "scale(0.7)",
-                    },
+                  },
                 }}
-            >
+              >
                 <ReCAPTCHA
-                    sitekey="6LdIdPQrAAAAAISAZ3HOvdlfkY5WZDeYcZ1C7RF-"
-                    onChange={handleCaptchaChange}
+                  sitekey="6LdIdPQrAAAAAISAZ3HOvdlfkY5WZDeYcZ1C7RF-"
+                  onChange={handleCaptchaChange}
                 />
-            </Box>
+              </Box>
 
+              {/* ✅ Button is disabled until CAPTCHA is completed */}
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ backgroundColor: "#00ff77", color: "black", width: "100%" }}
+                disabled={!captchaValue || isSubmitting}
+                sx={{
+                  backgroundColor: !captchaValue ? "#555" : "#00ff77",
+                  color: !captchaValue ? "#aaa" : "black",
+                  width: "100%",
+                  fontWeight: "bold",
+                  py: 1.2,
+                  "&:hover": {
+                    backgroundColor: captchaValue ? "#00cc66" : "#555",
+                  },
+                }}
               >
-                Submit
+                {isSubmitting ? "Sending..." : "Submit"}
               </Button>
 
               <Typography variant="body2" sx={{ textAlign: "center", mt: 2 }}>
