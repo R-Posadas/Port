@@ -125,7 +125,7 @@ export default function About() {
               sx={{ lineHeight: 1.6, fontSize: isMobile ? "16px" : "18px" }}
             >
               <strong>Name:</strong> Raffy <br />
-              <strong>Contact:</strong> 09077759308 <br />
+              <strong>Contact:</strong> 09912191578 <br />
               <strong>Email:</strong> raffy.posadas@hcdc.edu.ph
             </Typography>
 
