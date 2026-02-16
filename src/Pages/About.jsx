@@ -126,7 +126,7 @@ export default function About() {
             >
               <strong>Name:</strong> Raffy <br />
               <strong>Contact:</strong> 09912191578 <br />
-              <strong>Email:</strong> raffy.posadas@hcdc.edu.ph
+              <strong>Email:</strong> raffy.posadas1700@gmail.com
             </Typography>
 
             <motion.div
