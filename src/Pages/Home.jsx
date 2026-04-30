@@ -41,7 +41,7 @@ export default function Home() {
           I am{" "}
           <span style={{ color: "#00ff77" }}>
             <Typewriter
-              words={["Web Developer", "Raffy", "Editor"]}
+              words={["Developer", "Raffy", "Editor"]}
               loop={0}
               cursor
               cursorStyle="|"
