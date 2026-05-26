@@ -20,6 +20,11 @@ export default function Services() {
             description: "I create stunning, user-friendly websites and web apps using HTML5, CSS3, JavaScript, React, and WordPress for seamless, responsive designs and custom components.",
         },
         {
+            title: "Mobile Development",
+            icon: "mdi:cellphone",
+            description: "I create stunning, user-friendly mobile apps using React Native and other modern frameworks for seamless, responsive designs and custom components.",
+        },
+        {
             title: "Editing",
             icon: "mdi:movie-edit",
             description: "I provide basic video and photo editing services, including trimming, color correction, and simple effects to enhance your content.",
@@ -80,7 +85,7 @@ export default function Services() {
                         My <span style={{color: "#00ff77"}}>Services</span>
                     </Typography>
                     <Typography variant="h6" sx={{ lineHeight: "1.6", fontSize: "18px" }}>
-                        I offera unique combination of front-end development and basic video/photo editing services to help you
+                        I offer a unique combination of web/mobile development and basic video/photo editing services to help you
                         build engaging websites, professional video content, and refine your written material for maximum impact.
                     </Typography>
                 </Container>
